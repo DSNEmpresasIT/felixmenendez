@@ -1,0 +1,28 @@
+---
+import Slider from "../components/home/Slider.astro";
+import About from "../components/home/About_2.astro";
+import Farm from "../components/home/Farm.astro";
+import ProductsComponent from "../components/home/ProductsComponent";
+import Sponsors from "../components/home/Sponsors.astro";
+import Layout from "../layouts/Layout.astro";
+import { PAGES } from "../util/pages";
+---
+<Layout path={PAGES.HOME_PAGE}>
+	<Slider />
+	<About />
+	<!-- <Farm />		 -->
+	<!-- <ProductsComponent client:load /> -->
+	<Sponsors />
+	<script is:inline src="/assets/js/jquery.js"></script>
+	<script is:inline src="/assets/js/fontawesome.min.js"></script>
+	<script is:inline src="/assets/js/waypoints.min.js"></script>
+	<script is:inline src="/assets/js/bootstrap.min.js"></script>
+	<script is:inline src="/assets/js/wow.min.js"></script>
+	<script is:inline src="/assets/js/swiper.min.js"></script>
+	<script is:inline src="/assets/js/jquery.countdown.min.js"></script>
+	<script is:inline src="/assets/js/jquery.counterup.min.js"></script>
+	<script is:inline src="/assets/js/isotope.pkgd.min.js"></script>
+	<script is:inline src="/assets/js/lightcase.js"></script>
+	<script is:inline src="/assets/js/functions.js"></script>
+</Layout>
+

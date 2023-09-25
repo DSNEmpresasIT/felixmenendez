@@ -1,0 +1,66 @@
+---
+import { ProductTypes } from "src/util/types";
+import { PAGES, PATH_ROUTES } from "../../util/pages";
+const { route } = Astro.props;
+
+const isBlack = (actualRoute: PAGES) => {
+  const conditionals = {
+    [PAGES.HOME_PAGE]: false,
+    [PAGES.CONTACT_PAGE]: false, 
+    [PAGES.CATALOG_PAGE]: false,
+    [PAGES.NOT_FOUND_PAGE]: true,
+  }
+
+  // @ts-ignore
+  return conditionals[actualRoute] ?? true
+}
+
+---
+<!-- Header section start here -->
+<header class="header-section transparent-header" style=`background-color: ${isBlack(route) ? 'black' : ''}; top: ${isBlack(route) ? '0px' : ''};`>
+  <div class="header-area">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg">
+        <div class="primary-menu">
+          <div class="logo">
+            <a href={PATH_ROUTES.HOME_PATH}><img src="/assets/images/logo/01.png" alt="logo"></a>
+          </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="icofont-navigation-menu"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="main-area">
+              <div class="main-menu">
+                <ul class="agri-ul">
+                  <li class={route === PAGES.HOME_PAGE ? 'active' : ''}><a href={PATH_ROUTES.HOME_PATH}>Home</a></li>
+                  <li class={route === PAGES.BLOG_PAGE ? 'active' : ''}><a href={'/'+PATH_ROUTES.BLOG_PATH}>Noticias</a></li>
+                  <li class={route === PAGES.CATALOG_PAGE ? 'active' : ''}>
+                    <a href={`/${PATH_ROUTES.PRODUCTS_PATH}/${PATH_ROUTES.CATALOG_PATH}`}>Productos</a>
+                    <ul class="agri-ul">
+                      <li><a href=`/${PATH_ROUTES.PRODUCTS_PATH}/${PATH_ROUTES.CATALOG_PATH}/${ProductTypes.HERBICIDAS}`>Herbicidas</a></li>
+                      <li><a href=`/${PATH_ROUTES.PRODUCTS_PATH}/${PATH_ROUTES.CATALOG_PATH}/${ProductTypes.FERTILIZANTES}`>Fertilizantes</a></li>
+                      <li><a href=`/${PATH_ROUTES.PRODUCTS_PATH}/${PATH_ROUTES.CATALOG_PATH}/${ProductTypes.FUNGICIDAS}`>Fungicidas</a></li>
+                      <li><a href=`/${PATH_ROUTES.PRODUCTS_PATH}/${PATH_ROUTES.CATALOG_PATH}/${ProductTypes.SEMILLA}`>Semillas</a></li>
+                      <li><a href=`/${PATH_ROUTES.PRODUCTS_PATH}/${PATH_ROUTES.CATALOG_PATH}/${ProductTypes.HERMICIDAS}`>Hermicidas</a></li>
+                    </ul>
+                  </li>
+                  <li class={route === PAGES.CONTACT_PAGE ? 'active' : ''}><a href={'/'+PATH_ROUTES.CONTACT_PATH}>Contacto</a></li>
+                  <li>
+                    <a type="button" >Seguinos</a>
+                    <ul class="agri-ul">
+                      <li><a target="_blank" href="https://www.facebook.com/solucionesagropecuariasintegrales"><i style="margin-right: 10px;" class="fa-brands fa-facebook"></i>Facebook</a></li>
+                      <li><a target="_blank" href="https://www.instagram.com/felixmenendezsrl/"><i style="margin-right: 10px;" class="fa-brands fa-instagram"></i> Instagram</a></li>
+                      <li><a target="_blank" href="https://www.youtube.com/@lafarmaciadelcampo"><i style="margin-right: 10px;" class="fa-brands fa-youtube"></i> Youtube</a></li>
+                      <li><a target="_blank" href="https://linktr.ee/felixmemendezsrl"><i style="margin-right: 10px;" class="fa-solid fa-link"></i> Linktree</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+<!-- Header section ending here -->

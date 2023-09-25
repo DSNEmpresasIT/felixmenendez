@@ -1,0 +1,30 @@
+---
+import { BlogComponent } from "@components/blog/BlogComponent";
+import Layout from "@layouts/Layout.astro";
+import { PAGES } from "src/util/pages";
+
+const { FACEBOOK_TOKEN, FACEBOOK_PAGE_ID, INSTAGRAM_TOKEN } = await import.meta.env;
+---
+
+<Layout path={PAGES.BLOG_PAGE}>
+  <!-- Blog Section Start Here -->
+  <div class="blog-section blog-single padding-tb">
+    <div class="container">
+      <div class="section-wrapper">
+        <BlogComponent keys={{ FACEBOOK_TOKEN, FACEBOOK_PAGE_ID, INSTAGRAM_TOKEN }} client:load/>
+      </div>
+    </div>
+  </div>
+  <!-- Blog Section ENding Here -->
+  <script is:inline src="/assets/js/jquery.js"></script>
+  <script is:inline src="/assets/js/fontawesome.min.js"></script>
+  <script is:inline src="/assets/js/waypoints.min.js"></script>
+  <script is:inline src="/assets/js/bootstrap.min.js"></script>
+  <script is:inline src="/assets/js/wow.min.js"></script>
+  <script is:inline src="/assets/js/swiper.min.js"></script>
+  <script is:inline src="/assets/js/jquery.countdown.min.js"></script>
+  <script is:inline src="/assets/js/jquery.counterup.min.js"></script>
+  <script is:inline src="/assets/js/isotope.pkgd.min.js"></script>
+  <script is:inline src="/assets/js/lightcase.js"></script>
+  <script is:inline src="/assets/js/functions.js"></script>
+</Layout>

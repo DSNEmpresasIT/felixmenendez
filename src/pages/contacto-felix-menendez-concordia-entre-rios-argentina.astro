@@ -1,0 +1,93 @@
+---
+import FormContact from "../components/contact/FormContact";
+// import FormContactEmail from "../components/contact/FormContactEmail";
+import Layout from "../layouts/Layout.astro";
+import { PAGES } from "../util/pages";
+const { RECAPTCHA_KEY, EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE, CONTACT_EMAILJS_TEMPLATE, GOOGLE_MAP_KEY } = await import.meta.env;
+---
+<Layout path={PAGES.CONTACT_PAGE}>
+  <!-- Page Header Section Start Here -->
+  <section class="page-header bg_img padding-tb fix-mobile">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="page-header-content-area">
+            <h4 class="ph-title">Contactate con nosotros</h4>
+            <ul class="agri-ul">
+                <li><a href="/">Home</a></li>
+                <li><a class="active">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+  </section>
+  <!-- Page Header Section Ending Here -->
+  <!-- Contact Us Section Start Here -->
+  <div class="contact-section padding-tb">
+    <div class="container">
+        <div class="contac-top">
+            <div class="row justify-content-center">
+                <div class="col-xl-4 col-lg-6 col-12">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="icofont-google-map"></i>
+                        </div>
+                        <div class="contact-details">
+                            <p>Gobernador Cresto 1475, Concordia E.R., Argentina.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="icofont-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <p>+54 0345 421 1515 <br> +54 9 3454 03-7365</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="icofont-envelope"></i>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center' }} class="contact-details">
+                            <p>info@solucionesagropecuarias.com.ar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contac-bottom">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-12">
+                    <div class="location-map">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9450.775398475274!2d-58.017337562175975!3d-31.382230819378755!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95ade819af3cc247%3A0xfa3445b9df5c0fa!2sFelix%20Menendez%20S.R.L%20-%20Soluciones%20Agropecuarias!5e0!3m2!1ses!2sar!4v1690245314128!5m2!1ses!2sar" 
+                            style="border: 0; width: 100%; height: 60vh" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                        ></iframe>
+                    </div>
+                </div>
+                <FormContact keys={{ RECAPTCHA_KEY, EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE, CONTACT_EMAILJS_TEMPLATE }} client:load/>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- Contact Us Section ENding Here -->
+  <!-- <FormContactEmail keys={{ RECAPTCHA_KEY, EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE, CONTACT_EMAILJS_TEMPLATE }} client:load/> -->
+  <script is:inline src="/assets/js/jquery.js"></script>
+  <script is:inline src="/assets/js/fontawesome.min.js"></script>
+  <script is:inline src="/assets/js/waypoints.min.js"></script>
+  <script is:inline src="/assets/js/bootstrap.min.js"></script>
+  <script is:inline src="/assets/js/wow.min.js"></script>
+  <script is:inline src="/assets/js/swiper.min.js"></script>
+  <script is:inline src="/assets/js/jquery.countdown.min.js"></script>
+  <script is:inline src="/assets/js/jquery.counterup.min.js"></script>
+  <script is:inline src="/assets/js/isotope.pkgd.min.js"></script>
+  <script is:inline src="/assets/js/lightcase.js"></script>
+  <script is:inline src="/assets/js/functions.js"></script>
+  <script is:inline async defer src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_KEY}&callback=initMap`}
+  type="text/javascript"></script>
+</Layout>

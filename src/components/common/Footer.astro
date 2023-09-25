@@ -1,0 +1,72 @@
+---
+import { BestProducts } from "./footer/BestProducts";
+import { InstagramGallery } from "./footer/InstagramGallery";
+import { LastInstagramReel } from "./footer/LastInstagramReel";
+
+const { INSTAGRAM_TOKEN } = await import.meta.env;
+
+---
+
+<!-- footer section start here -->
+<footer class="footer-section padding-tb pb-0">
+  <div class="container">
+    <div class="footer-top">
+      <div class="row">
+        <div class="col-xl-3 col-md-6 col-12">
+          <div class="footer-item">
+            <div class="footer-inner">
+              <div class="footer-desc">
+                <LastInstagramReel INSTAGRAM_TOKEN={INSTAGRAM_TOKEN} client:load/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6 col-12">
+          <div class="footer-item footer-addtess">
+            <div class="footer-inner">
+              <div class="footer-title">
+                <h5 style="color: #ffb11f;">Félix Menéndez Soluciones Agropecuarias</h5>
+              </div>
+              <div class="footer-body">
+                <ul class="agri-ul">
+                  <li>
+                    <div class="icon">
+                      <i class="icofont-google-map"></i>
+                    </div>
+                    <div class="detalis">
+                      <p>Gobernador Cresto 1475, Concordia E.R., Argentina.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="icon">
+                      <i class="icofont-phone"></i>
+                    </div>
+                    <div class="detalis">
+                      <p>+54 0345 421 1515, +54 9 3454 03-7365</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="icon">
+                      <i class="icofont-envelope"></i>
+                    </div>
+                    <div class="detalis" style="position: relative;">
+                      <p style="font-size: 14px;">info@solucionesagropecuarias.com.ar</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <BestProducts client:load />
+        <InstagramGallery INSTAGRAM_TOKEN={INSTAGRAM_TOKEN} client:load />
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023<a href="https://www.dsnempresas.com.ar/" target="_blank"><span>Felix Menéndez, Soluciones Agropecuarias 2023 by <img src="/assets/images/logo/dsn.png" style="max-width: 33px;" alt="dsn"></span></a><a target="_blank"><span></span></a>
+        <!-- <script language="JavaScript" type="text/javascript">TrustLogo("https://micuenta.donweb.com/img/sectigo_positive_sm.png", "CL1", "none");</script><a href="https://donweb.com/es-ar/certificados-ssl" id="comodoTL" title="Certificados SSL Argentina">Certificados SSL Argentina</a> -->
+      </p>
+    </div>
+  </div>
+</footer>
+<!-- footer section ending here -->

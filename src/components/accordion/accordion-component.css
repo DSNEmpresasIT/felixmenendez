@@ -1,0 +1,71 @@
+.accordion-shop-component {
+  padding-left: 5px;
+}
+
+.accordion-shop-component li {
+  list-style: none;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.accordion-shop-component button {
+  background: none;
+  border: none;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 5px;
+  align-items: center;
+  transition: all .3s ease;
+}
+
+.accordion-shop-component button:hover {
+  color: #ffb11f;
+  transform: translateX(10px);
+}
+
+.accordion-shop-component i {
+  transition: all .3s ease-in-out;
+}
+
+.accordion-shop-component 
+.accordion-main-button {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.accordion-shop-component 
+.accordion-subtype-button {
+  font-size: 15px;
+  margin-top: 5px;
+  font-weight: 430;
+}
+
+.accordion-types-container {
+  padding-left: 5px;
+  margin-top: 5px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+}
+
+.accordion-subtypes-containers {
+  padding-left: 5px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+}
+
+.accordion-subtypes-containers li {
+  font-size: 13px;
+}
+
+.show-accordion-content {
+  max-height: 1000px;
+  transition: max-height 1s ease-in-out;
+}
+
+.rotate-animation {
+  transform: rotate(90deg);
+}
+

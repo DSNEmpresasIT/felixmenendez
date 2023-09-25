@@ -1,0 +1,125 @@
+
+.whatsapp-glove-button {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: var(--main-color);
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  flex-direction: column;
+  position: fixed;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  border-radius: 10px 10px 10px 10px;
+  border: none;
+  z-index: 100;
+}
+
+.whatsapp-chat-container {
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+  background-color: #f7f7f7cf7;
+  border-radius: 5px 5px 5px 5px;
+  border: 1px solid rgba(0, 0, 0, 0.283);
+  flex-direction: column;
+  height: 350px;
+  width: 320px;
+  z-index: 100;
+}
+
+.whatsapp-chat-container 
+.container-header {
+  height: 90px;
+  background-image: url(./wpp-header.png);
+  background-size: cover;
+  border-radius: 5px 5px 0px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.whatsapp-chat-container 
+.container-header
+.title-header {
+  font-weight: 700; 
+  font-size: 20px;
+}
+
+.whatsapp-chat-container 
+.container-header
+.close-button-header {
+  font-size: 20px;
+  cursor: pointer;
+  width: 7%;
+  color: #f7f7f7;
+  background-color: #a8cf45;
+  border: none;
+  border-radius: 100%;
+  margin-left: 55px;
+}
+
+.whatsapp-chat-container 
+.container-body {
+  height: 340px;
+  padding: 10px;
+  overflow: auto;
+}
+
+.whatsapp-chat-container 
+.container-body
+.body-overflow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.whatsapp-chat-container 
+.container-body
+.body-overflow 
+a {
+  border-radius: 3px;
+  background-color: #a8cf45;
+  display: flex;
+  color: #f7f7f7;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  padding: 2%;
+}
+
+.whatsapp-chat-container 
+.container-body
+.body-overflow 
+a:hover {
+  color: #a8cf45;
+  background-color: #f7f7f7;
+}
+
+.link-ws-button {
+  color: #ffb11f;
+  height: 48px; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 150px 150px 150px 150px;
+  padding: 0px 30px;
+  width: 90%;
+}

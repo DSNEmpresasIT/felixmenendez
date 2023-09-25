@@ -1,0 +1,27 @@
+{
+  "name": "soluciones-agropecuarias",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^2.1.2",
+    "@emailjs/browser": "^3.11.0",
+    "@types/react": "^18.2.22",
+    "animate.css": "^4.1.1",
+    "astro": "^2.3.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-google-recaptcha": "^2.1.0",
+    "react-loading-skeleton": "^3.3.1",
+    "react-paginate": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/react-google-recaptcha": "^2.1.5"
+  }
+}

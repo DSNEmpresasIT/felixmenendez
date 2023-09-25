@@ -1,0 +1,129 @@
+---
+import { ButtonPDFComponent } from "@components/product-single/ButtonPDFComponent";
+import { RelatedProductsSection } from "@components/product-single/RelatedProductsSection";
+import Layout from "@layouts/Layout.astro";
+import { db } from "../../util/catalogData";
+import type { ProductData } from "src/util/types";
+import { PATH_ROUTES } from "src/util/pages";
+
+export function getStaticPaths() {
+  return db.map((product) => {
+    return { params: { product: product.name.split(' ').join('') } };
+  });
+}
+const { product } = Astro.params;
+
+const productSelected:ProductData = db.filter((obj) => obj.name.split(' ').join('') === product)[0];
+---
+
+<Layout path={productSelected.name}>
+  <!-- Shop Page Section start here -->
+  <section class="shop-single padding-tb">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-12 sticky-widget">
+          <div class="product-details">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page"> <a href="/" style="color: inherit;">Home</a> </li>
+                <li class="breadcrumb-item" aria-current="page"> <a href={`/${PATH_ROUTES.PRODUCTS_PATH}/${PATH_ROUTES.CATALOG_PATH}`} style="color: inherit;">Productos</a></li>
+                <li class="breadcrumb-item" style="color: #ffb11f;" aria-current="page">{productSelected.name}</li>
+                <a type="a" href="/productos-felix-menendez/insumos-agropecuarios" class="lab-btn" style="display: flex;justify-content: center ; margin-left: 90%; background-color: #ffb11f; border: none; padding: 0.6rem 2rem;color: #f7f7f7;">
+                  <span style="display: flex; align-items: center;gap: 0.5rem;"><i class="icofont-swoosh-left"></i>  Atras</span> </a>
+              </ol>
+            </nav>
+            <div  class="row align-items-center">
+              <div class="col-md-6 col-12">
+                <div class="product-thumb">
+                  <div class="swiper-container gallery-top">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide">
+                        <div class="shop-item">
+                          <div class="shop-thumb">
+                            <img
+                              width="100%"
+                              src={productSelected.img ? `/assets/images/product/${productSelected.img}/${productSelected.img}.png` : '/assets/images/product/solubles/solubles.png'}
+                              alt="shop-single"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-12">
+                <div class="post-content">
+                  <h4>{productSelected.name}</h4>
+                  <h5>Descripción del producto</h5>
+                  <p>{productSelected?.specs?.description}</p>
+                  <form>
+                    <a 
+                      style="width: 100%" 
+                      href={`https://api.whatsapp.com/send?phone=5493454037365&text=Hola, me gustaría saber mas información sobre el producto ${productSelected.name}`}
+                      target="_blank" 
+                      >
+                      <button type="button" class="lab-btn"><span>Consultar precios</span></button>
+                    </a>
+                    {
+                      productSelected.specs?.features?.pdfFiles?.marbete 
+                      && (
+                        <div class="select-product">
+                          <ButtonPDFComponent 
+                            title={"Descargar Marbete"} 
+                            link={`/assets/images/product/${productSelected.img}`} 
+                            fileName={"marbete"}
+                            client:load
+                          />
+                        </div>
+                      )
+                    }
+                    {
+                      productSelected.specs?.features?.pdfFiles?.flyer 
+                      && (
+                        <div class="select-product">
+                          <ButtonPDFComponent 
+                            title={"Descargar Flyer comercial"} 
+                            link={`/assets/images/product/${productSelected.img}`} 
+                            fileName={"flyer"}
+                            client:load
+                          />
+                        </div>
+                      )
+                    }
+                    {
+                      productSelected.specs?.features?.pdfFiles?.securityDataPaper
+                      && (
+                        <div class="select-product" style="width: 100%;">
+                          <ButtonPDFComponent 
+                            title={"Descargar hoja de datos de seguridad"} 
+                            link={`/assets/images/product/${productSelected.img}`}
+                            fileName={"securitydatapaper"} 
+                            client:load
+                          />
+                        </div>  
+                      )
+                    }
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <RelatedProductsSection productSelected={productSelected} client:load/>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Shop Page Section ending here -->
+  <script is:inline src="/assets/js/jquery.js"></script>
+  <script is:inline src="/assets/js/fontawesome.min.js"></script>
+  <script is:inline src="/assets/js/waypoints.min.js"></script>
+  <script is:inline src="/assets/js/bootstrap.min.js"></script>
+  <script is:inline src="/assets/js/wow.min.js"></script>
+  <script is:inline src="/assets/js/swiper.min.js"></script>
+  <script is:inline src="/assets/js/jquery.countdown.min.js"></script>
+  <script is:inline src="/assets/js/jquery.counterup.min.js"></script>
+  <script is:inline src="/assets/js/isotope.pkgd.min.js"></script>
+  <script is:inline src="/assets/js/lightcase.js"></script>
+  <script is:inline src="/assets/js/functions.js"></script>
+</Layout>

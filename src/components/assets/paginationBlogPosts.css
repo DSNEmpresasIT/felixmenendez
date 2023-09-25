@@ -1,0 +1,41 @@
+.pagination {
+    margin: 40px 0;
+  }
+  
+  @media (min-width: 992px) {
+    .pagination {
+      margin-bottom: 10px;
+      display: flex;
+      gap: 0.8rem;
+    }
+  }
+  
+  .pagination .page-num {
+    display: flex;
+    padding: 5px;
+    align-items: center;
+  }
+  
+  .pagination .page-num {
+    display: flex;
+    gap: 1rem;
+    width: 46px;
+    height: 46px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 4px rgba(10, 31, 68, 0.1);
+    color: #716c80;
+    z-index: 1;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+  
+  .pagination .active,
+  .pagination .page-num:hover {
+    color: #f7f7f7;
+    background: #ffb11f;
+    border-radius: 50%;
+  }
+  
+  
+  

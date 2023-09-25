@@ -1,0 +1,33 @@
+---
+import { ShopComponent } from "@components/catalog/ShopComponent";
+import Layout from "@layouts/Layout.astro";
+import { PAGES } from "src/util/pages";
+---
+<Layout path={PAGES.CATALOG_PAGE}>
+  <!-- Page Header Section Start Here -->
+  <section class="page-header bg_img padding-tb">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="page-header-content-area">
+        <h4 class="ph-title">{PAGES.CATALOG_PAGE}</h4>
+        <ul class="agri-ul">
+          <li><a href="/">Home</a></li>
+          <li><a class="active">{PAGES.CATALOG_PAGE}</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- Page Header Section Ending Here -->
+  <ShopComponent filter={undefined} client:only="react" />
+  <script is:inline src="/assets/js/jquery.js"></script>
+  <script is:inline src="/assets/js/fontawesome.min.js"></script>
+  <script is:inline src="/assets/js/waypoints.min.js"></script>
+  <script is:inline src="/assets/js/bootstrap.min.js"></script>
+  <script is:inline src="/assets/js/wow.min.js"></script>
+  <script is:inline src="/assets/js/swiper.min.js"></script>
+  <script is:inline src="/assets/js/jquery.countdown.min.js"></script>
+  <script is:inline src="/assets/js/jquery.counterup.min.js"></script>
+  <script is:inline src="/assets/js/isotope.pkgd.min.js"></script>
+  <script is:inline src="/assets/js/lightcase.js"></script>
+  <script is:inline src="/assets/js/functions.js"></script>
+</Layout>

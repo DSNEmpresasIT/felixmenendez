@@ -55,7 +55,7 @@ export const ShopComponent = ({ filter }: any) => {
             <div className="col-lg-3 col-md-7 col-12">
               <aside>
                 <SearcherComponent setProductData={setProductData} allData={db} />
-                <ShopNavComponentNew handleFilterNav={handleFilterNav} updateFilteredData={handleUpdateFilterData} />
+                <ShopNavComponentNew handleFilterNav={handleFilterNav} updateFilteredData={handleUpdateFilterData} filter={filter} />
               </aside>
             </div>
             <div className="col-lg-9 col-12">

@@ -68,7 +68,7 @@ export const db: ProductData[] = [
     }
   },
   {
-    name: 'Fosfato Monoamónico',
+    name: 'Fosfato Monoamonico',
     filters: [ProductTypes.FERTILIZANTES, ProductTypes.FERTILIZANTES_GRANULADOS],
     formulacion: '0-0-22-11Mg-22s',
     specs: {
@@ -91,7 +91,7 @@ export const db: ProductData[] = [
     }
   },
   {
-    name: 'Fosfato Diamónico',
+    name: 'Fosfato Diamonico',
     filters: [ProductTypes.FERTILIZANTES, ProductTypes.FERTILIZANTES_GRANULADOS],
     formulacion:'18-46-0',
     specs: {
@@ -451,7 +451,7 @@ export const db: ProductData[] = [
     }
   },
   {
-    name: 'Toprice PN Nuro Arno.',
+    name: 'Toprice PN Nuro Arno',
     filters: [ProductTypes.HERBICIDAS],
     isActiveSubstance: true, //[ProductTypes.FERTILIZANTES_LIQUIDOS, ProductTypes.FERTILIZANTES_LIQUIDOS_HERBICIDAS],
     formulacion: 'Imazapir 48 % + Imazapic 70%',

@@ -722,6 +722,8 @@ ul.agri-ul li {
   margin-bottom: 0;
 }
 
+
+
 .product-item .product-inner {
   margin: 15px;
 }
@@ -4204,7 +4206,7 @@ ul.agri-ul li {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: #2121218e;
+
   transform: scale(0);
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;

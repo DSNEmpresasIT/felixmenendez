@@ -34,17 +34,20 @@ export const CardCartComponent:FC<CardCartComponentProps> = ({ title,  descripti
   }, [img])
 
   return (
-    <div className="col-lg-4 col-md-6 col-12 animate__animated animate__fadeIn">
-      <div className="product-item">
-        <div className="product-thumb">
-          <img src={`/assets/images/product/${image}/${image}.png`} alt="item" />
-          <div className="product-action-link">
-            <a
+    <div className="col-lg-4 col-md-6 col-12 animate__animated animate__fadeIn" >
+      <div  className="product-item shadow boxShadow-product"  style={{height:'27rem'}}>
+      <a
               href={`/${PATH_ROUTES.PRODUCTS_PATH}/${title.split(' ').join('')}`}
-              ><i className="icofont-eye"></i></a>
+              >
+        <div className="product-thumb">
+          <img  src={`/assets/images/product/${image}/${image}.png`} alt="item" />
+          <div className="product-action-link">
+            <a><i className="icofont-link"></i></a>
           </div>
+          
         </div>
-        <div className="product-content row">
+        </a>
+        <div className="product-content row" >
           <div className='col-12' style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span>Nuevo</span>
             <span style={{ textTransform: 'capitalize', color: '#78bd41' }}>{filter[0]}</span>
@@ -61,7 +64,7 @@ export const CardCartComponent:FC<CardCartComponentProps> = ({ title,  descripti
               </div>
             )
           }
-          <div className='col-12 mt-1'>
+          <div className='col-12 mt-1' >
             <CardButton link={title.split(' ').join('')} />
           </div>
         </div>

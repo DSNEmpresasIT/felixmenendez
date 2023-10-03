@@ -35,9 +35,8 @@ export const CardCartComponent:FC<CardCartComponentProps> = ({ title,  descripti
 
   return (
     <div className="col-lg-4 col-md-6 col-12 animate__animated animate__fadeIn" >
-      <div  className="product-item shadow boxShadow-product"  style={{height:'27rem'}}>
-      <a
-              href={`/${PATH_ROUTES.PRODUCTS_PATH}/${title.split(' ').join('')}`}
+      <div  className="product-item shadow boxShadow-product"  style={{minHeight:'28rem' }}>
+      <a href={`/${PATH_ROUTES.PRODUCTS_PATH}/${title.split(' ').join('')}`}
               >
         <div className="product-thumb">
           <img  src={`/assets/images/product/${image}/${image}.png`} alt="item" />

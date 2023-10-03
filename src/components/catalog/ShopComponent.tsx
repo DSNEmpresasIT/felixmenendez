@@ -84,7 +84,7 @@ export const ShopComponent = ({ filter }: any) => {
                     })
                   }
                 </div>
-                <div className="" style={{ height: '150px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div  style={{ height: '150px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <ReactPaginate
                     pageCount={Math.ceil(ProductData?.length / postsPerPage)}
                     pageRangeDisplayed={3}

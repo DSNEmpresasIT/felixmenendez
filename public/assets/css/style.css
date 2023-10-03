@@ -4180,7 +4180,10 @@ ul.agri-ul li {
   animation-name: zoomIn;
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
-  box-shadow: 0 0 3px rgba(8, 136, 136, 0.1);
+  box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.1);
+}
+.shop-product-wrap .product-item:hover, .shop-product-wrap .product-list-item{
+  box-shadow: 0px 0px 7px 5px rgba(0,0,0,0.1);
 }
 .shop-product-wrap .product-item:hover .product-thumb::after, .shop-product-wrap .product-list-item:hover .product-thumb::after {
   transform: scale(1);

@@ -94,14 +94,14 @@ export const ShopComponent = ({ filter }: any) => {
                     activeClassName="active"
                     nextLabel=">"
                     previousLabel="<"
-                    // pageClassName="page-item"
                     pageLinkClassName="page-num"
                     previousLinkClassName="page-num"
-                    // previousClassName="page-item"
                     nextLinkClassName="page-num"
                     breakLabel="..."
-                    // breakClassName="page-item"
-                    // breakLinkClassName="page-link"
+                    hrefBuilder={() => {
+                      window.scrollTo(0, 0);
+                      }
+                    }
                     renderOnZeroPageCount={null}
                   />
                 </div>

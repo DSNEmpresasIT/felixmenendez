@@ -107,6 +107,9 @@ export const BlogPosts = () => {
           nextLinkClassName="page-num"
           breakLabel="..."
           renderOnZeroPageCount={null}
+          hrefBuilder={() => {
+            window.scrollTo(0, 0);
+            }}
         />
       </div>
     </article>

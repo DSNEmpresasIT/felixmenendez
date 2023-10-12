@@ -12,10 +12,9 @@ interface ShopComponentProps {
 export const ShopComponent = ({ filter }: any) => {
   const [ProductData, setProductData] = useState<ProductData[]>(db);
   const [currentPage, setCurrentPage] = useState(0);
-  const [ dataPaginate, setDataPaginate ] = useState<ProductData[]>();
+  const [dataPaginate, setDataPaginate ] = useState<ProductData[]>();
   const postsPerPage = 6; // Número de publicaciones por página
 
-  //TODO:refactor function by responsibility 
   const handleFilterNav = (productType: string, isName: boolean) => {
     setCurrentPage(0);
     let newData: ProductData[];
@@ -61,7 +60,7 @@ export const ShopComponent = ({ filter }: any) => {
             <div className="col-lg-9 col-12">
               <article>
                 <div className="shop-title d-flex flex-wrap justify-content-between">
-                  <p>{dataPaginate?.length} Resultados de {db.length}</p>
+                  <p>{dataPaginate?.length} {ProductData.length > 1 ? `Resultados de ${ProductData.length}` : 'resultado'}</p>
                   <div className="product-view-mode">
                     <a className="active" data-target="grids"><i className="icofont-ghost"></i></a>
                     <a data-target="lists"><i className="icofont-listing-box"></i></a>
@@ -85,6 +84,7 @@ export const ShopComponent = ({ filter }: any) => {
                   }
                 </div>
                 <div  style={{ height: '150px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  { dataPaginate && dataPaginate.length > 5 && (
                   <ReactPaginate
                     pageCount={Math.ceil(ProductData?.length / postsPerPage)}
                     pageRangeDisplayed={3}
@@ -103,7 +103,7 @@ export const ShopComponent = ({ filter }: any) => {
                       }
                     }
                     renderOnZeroPageCount={null}
-                  />
+                  />)}
                 </div>
               </article>
             </div>

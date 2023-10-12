@@ -94,17 +94,16 @@ export const ShopNavComponentNew = ({ handleFilterNav, updateFilteredData, filte
 
   return (
     <>
-        {selectedTags?.map((tag, index) => (
-          <ul className="widget widget-tags agri-ul widget-wrapper" key={index}>
-            <li>
-            <a onClick={() => handleRemoveTag(index)}>{tag} X</a>
-            </li>
-          </ul>
-        ))}
-     
       <div className="widget widget-category">
         <div className="widget-header">
-          <h5>Tipos de productos</h5>
+          <h5>{!selectedCategory ?  "Tipos de productos": "Filtros Seleccionados"}</h5>
+        </div>
+        <div className="widget widget-tags">
+          <ul className="agri-ul widget-wrapper">
+            {selectedTags?.map((tag, index) => (
+              <li className="" style={{backgroundColor:"none"}} key={index}><a onClick={() => handleRemoveTag(index)}>{tag}<span style={{marginLeft:"10px", padding:"2px"}}>x</span></a> </li> 
+            ))}
+          </ul>
         </div>
         <ul className="agri-ul widget-wrapper">
           {selectedCategory ? (

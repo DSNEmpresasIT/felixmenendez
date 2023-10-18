@@ -4062,10 +4062,10 @@ ul.agri-ul li {
 .widget.widget-tags {
   padding: 0;
 }
-.widget.widget-tags ul.widget-wrapper {
+/* .widget.widget-tags ul.widget-wrapper {
   padding-top: 15px;
   justify-content: center;
-}
+} */
 .widget.widget-tags ul.widget-wrapper li {
   border: none;
   padding: 0;

@@ -299,7 +299,7 @@ export const db: ProductData[] = [
     img: 'masterminsplus',
     name: 'Mastermins Plus',
     formulacion: '3N-17P-5K-1Mg-2S-1Zn',
-    filters: [ProductTypes.FERTILIZANTES_LIQUIDOS],
+    filters: [ProductTypes.FERTILIZANTES, ProductTypes.FERTILIZANTES_LIQUIDOS],
     specs: {
       description: 'Es un fertilizante líquido, de aplicación foliar que contiene macro y micronutrientes y es apto en todos los cultivos. Nutren la planta en forma equilibrada. Es rápidamente absorbido por las hojas, ramas y raíces. Es líquido, facilitando la preparación del caldo y su aplicación. Mejora la acción de los plaguicidas aplicados en conjunto. Mayor número de frutos por plantas.',
     }
@@ -308,14 +308,14 @@ export const db: ProductData[] = [
     img: 'nitroplus18',
     name: 'Nitro Plus 18',
     formulacion: '18 % N',
-    filters: [ProductTypes.FERTILIZANTES_LIQUIDOS],
+    filters: [ProductTypes.FERTILIZANTES, ProductTypes.FERTILIZANTES_LIQUIDOS],
     specs: {
       description: 'Es un fertilizante que contiene una exclusiva combinación de nitrógeno amínico y calcio, totalmente solubles en agua. Esta asociación maximiza el aprovechamiento de estos nutrientes por la planta. Nitroplus 18 es un complejo que promueve la reducción de estrés en la planta, mejorando la uniformidad del producto cosechado, reduciendo las enfermedades e incrementando la calidad y rentabilidad.',
     }
   },
   {
     name: 'Estimulante marca Stoller',
-    filters: [ProductTypes.FERTILIZANTES_LIQUIDOS],
+    filters: [ProductTypes.FERTILIZANTES, ProductTypes.FERTILIZANTES_LIQUIDOS],
     specs: {
       description: `
       Promueve un adecuado equilibrio 
@@ -330,7 +330,7 @@ export const db: ProductData[] = [
   {
     img: 'nutriminssemilla',
     name: 'Nutrimins Semilla',
-    filters: [ProductTypes.FERTILIZANTES_LIQUIDOS],
+    filters: [ProductTypes.FERTILIZANTES, ProductTypes.FERTILIZANTES_LIQUIDOS],
     specs: {
       description: 'Es un Bioestigulador de crecimiento para tratamiento de semilla en gramíneas, formulado con un balance hormonal más Zinc quelatado y Azufre. Los cofactores de crecimiento estimulan una rápida germinación, uniformidad de plántulas, un rápido y vigoroso desarrollo radicular asegurando un stand de plantas adecuado.',
     }
@@ -339,7 +339,7 @@ export const db: ProductData[] = [
     img: 'bioforgeadvance',
     name: 'Bio Forge',
     formulacion: '2 % N-2,5 P',
-    filters: [ProductTypes.FERTILIZANTES_LIQUIDOS],
+    filters: [ProductTypes.FERTILIZANTES, ProductTypes.FERTILIZANTES_LIQUIDOS],
     specs: {
       description: `Fertilizante líquido con una combinación exclusiva de nitrógeno, potasio, cobalto y molibdeno, para el manejo de estrés abiótico durante todo el ciclo de cultivo. Su formulación renovada posee mayor concentración de cofactores de crecimiento que estimulan una rápida recuperación del cultivo en momentos críticos. A su vez, aporta nitrógeno a través de una fuente de alta eficiencia, lo cual favorece el proceso de recuperación.
       Promueve un adecuado equilibrio 
@@ -354,7 +354,7 @@ export const db: ProductData[] = [
   {
     name: 'Fosfito Potasico',
     formulacion: 'urea + boro',
-    filters: [ProductTypes.FERTILIZANTES_LIQUIDOS],
+    filters: [ProductTypes.FERTILIZANTES, ProductTypes.FERTILIZANTES_LIQUIDOS],
     specs: {
       description: `El fosfito de potasio es una sal blanca soluble en agua que se usa como 
       fungicida1
@@ -370,7 +370,7 @@ export const db: ProductData[] = [
   {
     name: 'Stoller Magnesio',
     formulacion: '4 % Mg - 2 % S',
-    filters: [ProductTypes.FERTILIZANTES_LIQUIDOS],
+    filters: [ProductTypes.FERTILIZANTES, ProductTypes.FERTILIZANTES_LIQUIDOS],
     specs: {
       description: `
       Es un fertilizante líquido quelatado, que contiene 4 % de Magnesio y 3 % de 
@@ -384,7 +384,7 @@ export const db: ProductData[] = [
   {
     name: 'Calcio Boro',
     formulacion: ' 8 % Ca - 0,5 % Bo',
-    filters: [ProductTypes.FERTILIZANTES_LIQUIDOS],
+    filters: [ProductTypes.FERTILIZANTES, ProductTypes.FERTILIZANTES_LIQUIDOS],
     specs: {
       description: `
         Promueve una sinergia en la planta que favorece la estructura de la 
@@ -401,7 +401,7 @@ export const db: ProductData[] = [
   {
     name: 'Stoller Hierro',
     formulacion: '10 % Bo',
-    filters: [ProductTypes.FERTILIZANTES_LIQUIDOS],
+    filters: [ProductTypes.FERTILIZANTES, ProductTypes.FERTILIZANTES_LIQUIDOS],
     specs: {
       description: `
         Stoller Hierro La línea STOLLER® corresponde a fertilizantes 
@@ -414,7 +414,7 @@ export const db: ProductData[] = [
   },
   {
     name: 'Starte Plus',
-    filters: [ProductTypes.FERTILIZANTES_LIQUIDOS],
+    filters: [ProductTypes.FERTILIZANTES, ProductTypes.FERTILIZANTES_LIQUIDOS],
     specs: {
       description: `
         Starter Plus es un fertilizante foliar, líquido quelatado, indicado 
@@ -425,7 +425,7 @@ export const db: ProductData[] = [
   },
   {
     name: 'Fosfito de Calcio',
-    filters: [ProductTypes.FERTILIZANTES_LIQUIDOS],
+    filters: [ProductTypes.FERTILIZANTES, ProductTypes.FERTILIZANTES_LIQUIDOS],
     specs: {
       description: `
         Es una fuente soluble de Fósforo y Calcio de 
@@ -438,7 +438,7 @@ export const db: ProductData[] = [
   {
     name: 'Stoller Zinc',
     formulacion: '7 % Zn - 3 % S',
-    filters: [ProductTypes.FERTILIZANTES_LIQUIDOS],
+    filters: [ProductTypes.FERTILIZANTES, ProductTypes.FERTILIZANTES_LIQUIDOS],
     specs: {
       description: `
         Stoller® Zinc es un fertilizante quelatado, indicado para el 

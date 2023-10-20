@@ -35,8 +35,8 @@ export interface NavData {
 
 export enum ProductTypes {
   FERTILIZANTES = 'fertilizante',
-  FERTILIZANTES_GRANULADOS = 'granulado',
-  FERTILIZANTES_SOLUBLES = 'soluble',
+  FERTILIZANTES_GRANULADOS = 'Fertilizantes granulado',
+  FERTILIZANTES_SOLUBLES = 'Fertilizantes soluble',
   FERTILIZANTES_LIQUIDOS = 'Fertilizantes Liquido',
   FERTILIZANTES_LIQUIDOS_HERBICIDAS = 'fertiliantes_liquidos_herbicida',
   HERBICIDAS = 'herbicida',

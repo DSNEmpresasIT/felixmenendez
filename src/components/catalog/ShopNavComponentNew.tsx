@@ -5,117 +5,168 @@ import { ProductData, ProductTypes } from "src/util/types";
 
 const mainNavData = [
   {
-    name: 'Herbicidas',
+    name: "Herbicidas",
     filter: ProductTypes.HERBICIDAS,
-    length: db.filter(product => product.filters.includes(ProductTypes.HERBICIDAS)).length,
+    length: db.filter((product) =>
+      product.filters.includes(ProductTypes.HERBICIDAS)
+    ).length,
   },
   {
-    name: 'Fertilizantes',
+    name: "Fertilizantes",
     filter: ProductTypes.FERTILIZANTES,
-    length: db.filter(product => product.filters.includes(ProductTypes.FERTILIZANTES)).length,
+    length: db.filter((product) =>
+      product.filters.includes(ProductTypes.FERTILIZANTES)
+    ).length,
   },
   {
-    name: 'Insecticidas',
+    name: "Insecticidas",
     filter: ProductTypes.INSECTICIDAS_GENERAL,
-    length: db.filter(product => product.filters.includes(ProductTypes.INSECTICIDAS_GENERAL)).length,
+    length: db.filter((product) =>
+      product.filters.includes(ProductTypes.INSECTICIDAS_GENERAL)
+    ).length,
   },
   {
-    name: 'Fungicidas',
+    name: "Fungicidas",
     filter: ProductTypes.FUNGICIDAS,
-    length: db.filter(product => product.filters.includes(ProductTypes.FUNGICIDAS)).length,
+    length: db.filter((product) =>
+      product.filters.includes(ProductTypes.FUNGICIDAS)
+    ).length,
   },
   {
-    name: 'Hermicidas',
+    name: "Hermicidas",
     filter: ProductTypes.HERMICIDAS,
-    length: db.filter(product => product.filters.includes(ProductTypes.HERMICIDAS)).length,
+    length: db.filter((product) =>
+      product.filters.includes(ProductTypes.HERMICIDAS)
+    ).length,
   },
   {
-    name: 'Semilla',
+    name: "Semilla",
     filter: ProductTypes.SEMILLA,
-    length: db.filter(product => product.filters.includes(ProductTypes.SEMILLA)).length,
+    length: db.filter((product) =>
+      product.filters.includes(ProductTypes.SEMILLA)
+    ).length,
   },
 ];
 
-function groupProductsByFormulation(products: ProductData[]) {
-  const groupedProducts: { [formulacion: string]: ProductData[] } = {};
-
-  products.forEach((product: ProductData) => {
-    if (!product.formulacion) return undefined;
-
-    if (!groupedProducts[product.formulacion]) {
-      groupedProducts[product.formulacion] = [product];
-    } else {
-      groupedProducts[product?.formulacion].push(product);
-    }
-  });
-
-  return groupedProducts;
-}
-
-export const ShopNavComponentNew = ({ handleFilterNav, updateFilteredData,filter }:
-  {
-    handleFilterNav: (category: ProductTypes, isName: boolean) => void;
-    updateFilteredData: (filteredData: ProductData[]) => void;
-    filter: ProductTypes
-  }) => {
-
+export const ShopNavComponentNew = ({
+  handleFilterNav,
+  updateFilteredData,
+  filter,
+}: {
+  handleFilterNav: (category: ProductTypes, isName: boolean) => void;
+  updateFilteredData: (filteredData: ProductData[]) => void;
+  filter: ProductTypes;
+}) => {
   const [selectedCategory, setSelectedCategory] = useState<ProductTypes | null>(null);
   const [filteredProducts, setFilteredProducts] = useState<ProductData[]>([]);
   const [selectedFormulation, setSelectedFormulation] = useState<string | null>(null);
   const [isActiveSubstance, setActiveSubstance] = useState<boolean | null>(false);
+  const [selectedSubtype, setSelectedSubtype] = useState<ProductTypes | null>(null);
+  const [selectedTags, setSelectedTags] = useState<ProductTypes[]>([]);
+
+  const showSubtypes =
+  selectedCategory === ProductTypes.FERTILIZANTES ||
+  (selectedSubtype !== null && selectedSubtype === selectedCategory);
 
   const handleClickCategory = (category: ProductTypes, isName: boolean) => {
     handleFilterNav(category, isName);
     if (category) {
-      setSelectedCategory(category)
-      filterCategoryByFormulacion(category)
+      if (!showSubtypes || category !== selectedSubtype) {
+        setSelectedCategory(category);
+        setSelectedTags([category]);
+      }
+      filterCategoryByFormulacion(category);
     }
   };
 
-  const handleClickFormulation = (formulation: string) => {
+  const handleClickFormulation = (formulation: any) => {
     setSelectedFormulation(formulation);
-    const filteredByFormulation = filteredProducts.filter((product) => product.formulacion === formulation);
+    const filteredByFormulation = filteredProducts.filter(
+      (product) => product.formulacion === formulation
+    );
     updateFilteredData(filteredByFormulation);
+    setSelectedTags([selectedCategory, formulation]);
   };
 
-  useEffect(() => {
-    if (filter && filter !== selectedCategory) {
-      handleClickCategory(filter, false)
-    }
-  }, [filter, selectedCategory]);
+  const resetFilters = () => {
+    setSelectedCategory(null);
+    setSelectedSubtype(null);
+    setSelectedTags([]);
+  };
 
+  const handleRemoveTag = (index: number) => {
+    const updatedTags = selectedTags.filter((_, i) => i !== index);
+    setSelectedFormulation(null);
+    setSelectedTags(updatedTags);
+
+    if (index === 0) {
+      updateFilteredData(db);
+      resetFilters();
+    } else if (index === 1 && selectedCategory) {
+      handleFilterNav(selectedCategory, false);
+    }
+  };
 
   const filterCategoryByFormulacion = (category: ProductTypes) => {
-    const newFilteredProducts = db.filter((product) => product.filters.includes(category));
+    const newFilteredProducts = db.filter((product) =>
+      product.filters.includes(category)
+    );
     setFilteredProducts(newFilteredProducts);
-    setActiveSubstance(newFilteredProducts.length > 0 ? newFilteredProducts[0].isActiveSubstance || false : false);
-  }
-  const groupedProducts = groupProductsByFormulation(filteredProducts);
-  
+    setActiveSubstance(
+      newFilteredProducts.length > 0
+        ? newFilteredProducts[0].isActiveSubstance || false
+        : false
+    );
+  };
+
   return (
     <>
       <div className="widget widget-category">
         <div className="widget-header">
-          <h5>Tipos de productos</h5>
+          <h5>
+            {!selectedCategory ? "Tipos de productos" : "Filtros Seleccionados"}
+          </h5>
         </div>
+        {selectedCategory && (
+          <div className="widget widget-tags">
+            <ul className="agri-ul widget-wrapper">
+              {selectedTags?.map((tag, index) => (
+                <li
+                  className=""
+                  style={{ backgroundColor: "none" }}
+                  key={index}
+                >
+                  <a onClick={() => handleRemoveTag(index)}>
+                    {tag}
+                    <span style={{ marginLeft: "10px", padding: "2px" }}>
+                      x
+                    </span>
+                  </a>{" "}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         <ul className="agri-ul widget-wrapper">
-          <li >
-          <a href={`/${PATH_ROUTES.PRODUCTS_PATH}/${PATH_ROUTES.CATALOG_PATH}`} className="d-flex flex-wrap justify-content-between">
-
-              <span>
-                <i className="icofont-double-right" ></i>Ver Todos
-              </span>
-              <span>({db.length})</span>
-            </a>
-          </li>
-          {mainNavData.map(data => {
-            const filterPath = `/${PATH_ROUTES.PRODUCTS_PATH}/${PATH_ROUTES.CATALOG_PATH}/${data.filter}`;
-            return (
+          {selectedCategory ? (
+            <li>
+              <a
+                href={`/${PATH_ROUTES.PRODUCTS_PATH}/${PATH_ROUTES.CATALOG_PATH}`}
+                className="d-flex flex-wrap justify-content-between"
+              >
+                <span>
+                  <i className="icofont-double-right"></i>Ver Todos
+                </span>
+                <span>({db.length})</span>
+              </a>
+            </li>
+          ) : (
+            mainNavData.map((data) => (
               <li key={data.filter}>
                 <a
-                  href={filterPath}
-                  className={`d-flex flex-wrap justify-content-between ${selectedCategory === data.filter ? 'active' : ''
-                    }`}
+                  className={`d-flex flex-wrap justify-content-between ${
+                    selectedCategory === data.filter ? "active" : ""
+                  }`}
                   onClick={() => handleClickCategory(data.filter, false)}
                 >
                   <span>
@@ -125,36 +176,72 @@ export const ShopNavComponentNew = ({ handleFilterNav, updateFilteredData,filter
                   <span>({data.length})</span>
                 </a>
               </li>
-            );
-          })}
+            ))
+          )}
+          {showSubtypes && (
+            <li>
+              {Object.values(ProductTypes)
+                .filter((type) => type.startsWith("Fertilizantes"))
+                .map((subtype) => (
+                  <a
+                    key={subtype}
+                    className={`d-flex flex-wrap justify-content-between ${
+                      selectedSubtype === subtype ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      handleClickCategory(subtype, false);
+                      setSelectedSubtype(subtype);
+                    }}
+                  >
+                    <span>
+                      <i className="icofont-double-right"></i>
+                      {subtype.replace("FERTILIZANTES_", "")}
+                    </span>
+                    <span>({subtype.length})</span>
+                  </a>
+                ))}
+            </li>
+          )}
         </ul>
       </div>
       <div className="widget widget-category">
         {selectedCategory && (
           <div className="widget-header">
             <h5>
-            {selectedCategory !== ProductTypes.SEMILLA && selectedCategory !== ProductTypes.HERMICIDAS && 
-            ( isActiveSubstance ? 'Principio Activo' : 'Formulación') }
+              {selectedCategory !== ProductTypes.SEMILLA &&
+                selectedCategory !== ProductTypes.HERMICIDAS &&
+                (isActiveSubstance ? "Principio Activo" : "Formulación")}
             </h5>
           </div>
         )}
         <ul className="agri-ul widget-wrapper">
-          {Object.keys(groupedProducts).map((formulation, index) => (
-            <li key={index}>
-              <a
-                href="#"
-                className={`d-flex flex-wrap justify-content-between ${selectedFormulation === formulation ? 'active' : ''
-                  }`}
-                onClick={() => handleClickFormulation(formulation)}
-              >
-                <span>
-                  <i className="icofont-double-right"></i>
-                  {formulation}
-                </span>
-                <span>({groupedProducts[formulation].length})</span>
-              </a>
-            </li>
-          ))}
+          {[
+            ...new Set(filteredProducts.map((product) => product.formulacion)),
+          ].map((formulation, index) => {
+            if (formulation && selectedCategory) {
+              const formulationLength = filteredProducts.filter(
+                (product) => product.formulacion === formulation
+              ).length;
+              return (
+                <li key={index}>
+                  <a
+                    className={`d-flex flex-wrap justify-content-between ${
+                      selectedFormulation === formulation ? "active" : ""
+                    }`}
+                    onClick={() => handleClickFormulation(formulation)}
+                  >
+                    <span>
+                      <i className="icofont-double-right"></i>
+                      {formulation}
+                    </span>
+                    {formulationLength > 1 && (
+                      <span>({formulationLength})</span>
+                    )}
+                  </a>
+                </li>
+              );
+            }
+          })}
         </ul>
       </div>
     </>

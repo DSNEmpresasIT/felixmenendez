@@ -36,13 +36,13 @@ export const CardCartComponent:FC<CardCartComponentProps> = ({ title,  descripti
   return (
     <div className="col-lg-4 col-md-6 col-12 animate__animated animate__fadeIn" >
       <div  className="product-item" style={{minHeight:'28rem' }}>
-      <a href={`/${PATH_ROUTES.PRODUCTS_PATH}/${title.split(' ').join('')}`}>
-        <div className="product-thumb">
-          <img  src={`/assets/images/product/${image}/${image}.png`} alt="item" />
-          <div className="product-action-link">
-            <a><i className="icofont-link"></i></a>
+        <a href={`/${PATH_ROUTES.PRODUCTS_PATH}/${title.split(' ').join('')}`}>
+          <div className="product-thumb">
+            <img  src={`/assets/images/product/${image}/${image}.png`} alt="item" />
+            <div className="product-action-link">
+              <span><i className="icofont-link"></i></span>
+            </div>
           </div>
-        </div>
         </a>
         <div className="product-content row" >
           <div className='col-12' style={{ display: 'flex', justifyContent: 'space-between' }}>

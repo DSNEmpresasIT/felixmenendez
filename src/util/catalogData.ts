@@ -69,7 +69,7 @@ export const db: ProductData[] = [
   },
   {
     name: 'Fosfato Monoamonico',
-    filters: [ProductTypes.FERTILIZANTES, ProductTypes.FERTILIZANTES_GRANULADOS],
+    filters: [ProductTypes.FERTILIZANTES, ProductTypes.FERTILIZANTES_SOLUBLES],
     formulacion: '0-0-22-11Mg-22s',
     specs: {
       description: `

@@ -49,30 +49,28 @@ const mainNavData = [
 ];
 
 export const ShopNavComponentNew = ({
-  handleFilterNav,
+  handleSetFilter,
   updateFilteredData,
-  filter,
+  filters,
+  productsLength
 }: {
-  handleFilterNav: (category: ProductTypes, isName: boolean) => void;
+  handleSetFilter: (category: ProductTypes) => void;
   updateFilteredData: (filteredData: ProductData[]) => void;
-  filter: ProductTypes;
+  filters: ProductTypes | null;
+  productsLength: number
 }) => {
-  const [selectedCategory, setSelectedCategory] = useState<ProductTypes | null>(null);
   const [filteredProducts, setFilteredProducts] = useState<ProductData[]>([]);
   const [selectedFormulation, setSelectedFormulation] = useState<string | null>(null);
   const [isActiveSubstance, setActiveSubstance] = useState<boolean | null>(false);
   const [selectedSubtype, setSelectedSubtype] = useState<ProductTypes | null>(null);
   const [selectedTags, setSelectedTags] = useState<ProductTypes[]>([]);
 
-  const showSubtypes =
-  selectedCategory === ProductTypes.FERTILIZANTES ||
-  (selectedSubtype !== null && selectedSubtype === selectedCategory);
+  const showSubtypes = filters === ProductTypes.FERTILIZANTES || (selectedSubtype !== null && selectedSubtype === filters);
 
   const handleClickCategory = (category: ProductTypes, isName: boolean) => {
-    handleFilterNav(category, isName);
     if (category) {
       if (!showSubtypes || category !== selectedSubtype) {
-        setSelectedCategory(category);
+        handleSetFilter(category);
         setSelectedTags([category]);
       }
       filterCategoryByFormulacion(category);
@@ -85,11 +83,12 @@ export const ShopNavComponentNew = ({
       (product) => product.formulacion === formulation
     );
     updateFilteredData(filteredByFormulation);
-    setSelectedTags([selectedCategory, formulation]);
+    setSelectedTags([filters, formulation]);
   };
 
   const resetFilters = () => {
-    setSelectedCategory(null);
+    // @ts-ignore
+    handleSetFilter(null);
     setSelectedSubtype(null);
     setSelectedTags([]);
   };
@@ -102,8 +101,8 @@ export const ShopNavComponentNew = ({
     if (index === 0) {
       updateFilteredData(db);
       resetFilters();
-    } else if (index === 1 && selectedCategory) {
-      handleFilterNav(selectedCategory, false);
+    } else if (index === 1 && filters) {
+      updateFilteredData(db.filter(item => item.filters.includes(filters)))
     }
   };
 
@@ -123,12 +122,18 @@ export const ShopNavComponentNew = ({
     <>
       <div className="widget widget-category">
         <div className="widget-header">
-          <h5>
-            {!selectedCategory ? "Tipos de productos" : "Filtros Seleccionados"}
-          </h5>
+            {!filters 
+              ? <h5>Tipos de productos</h5> 
+              : (
+                <>
+                  <h5>{selectedTags[0]} {selectedTags[1] && selectedTags[1]}</h5>
+                  <span>{productsLength} {productsLength === 1 ? 'resultado' : 'resultados'}</span>
+                </>
+              )
+            }
         </div>
-        {selectedCategory && (
-          <div className="widget widget-tags">
+        {filters && (
+          <div className="widget widget-tags mt-2">
             <ul className="agri-ul widget-wrapper">
               {selectedTags?.map((tag, index) => (
                 <li
@@ -136,7 +141,7 @@ export const ShopNavComponentNew = ({
                   style={{ backgroundColor: "none" }}
                   key={index}
                 >
-                  <a onClick={() => handleRemoveTag(index)}>
+                  <a type="button" style={{ textTransform: 'capitalize' }} onClick={() => handleRemoveTag(index)}>
                     {tag}
                     <span style={{ marginLeft: "10px", padding: "2px" }}>
                       x
@@ -145,10 +150,17 @@ export const ShopNavComponentNew = ({
                 </li>
               ))}
             </ul>
+            <a 
+              onClick={resetFilters}
+              style={{ marginTop: '5px', color: 'rgb(0, 103, 160)', fontSize: '13px' }} 
+              type="button"
+            >
+              Limpiar filtros
+            </a>
           </div>
         )}
         <ul className="agri-ul widget-wrapper">
-          {selectedCategory ? (
+          {filters ? (
             <li>
               <a
                 href={`/${PATH_ROUTES.PRODUCTS_PATH}/${PATH_ROUTES.CATALOG_PATH}`}
@@ -165,8 +177,9 @@ export const ShopNavComponentNew = ({
               <li key={data.filter}>
                 <a
                   className={`d-flex flex-wrap justify-content-between ${
-                    selectedCategory === data.filter ? "active" : ""
+                    filters === data.filter ? "active" : ""
                   }`}
+                  type="button"
                   onClick={() => handleClickCategory(data.filter, false)}
                 >
                   <span>
@@ -188,6 +201,7 @@ export const ShopNavComponentNew = ({
                     className={`d-flex flex-wrap justify-content-between ${
                       selectedSubtype === subtype ? "active" : ""
                     }`}
+                    type="button"
                     onClick={() => {
                       handleClickCategory(subtype, false);
                       setSelectedSubtype(subtype);
@@ -205,11 +219,11 @@ export const ShopNavComponentNew = ({
         </ul>
       </div>
       <div className="widget widget-category">
-        {selectedCategory && (
+        {filters && (
           <div className="widget-header">
             <h5>
-              {selectedCategory !== ProductTypes.SEMILLA &&
-                selectedCategory !== ProductTypes.HERMICIDAS &&
+              {filters !== ProductTypes.SEMILLA &&
+                filters !== ProductTypes.HERMICIDAS &&
                 (isActiveSubstance ? "Principio Activo" : "Formulación")}
             </h5>
           </div>
@@ -218,13 +232,14 @@ export const ShopNavComponentNew = ({
           {[
             ...new Set(filteredProducts.map((product) => product.formulacion)),
           ].map((formulation, index) => {
-            if (formulation && selectedCategory) {
+            if (formulation && filters) {
               const formulationLength = filteredProducts.filter(
                 (product) => product.formulacion === formulation
               ).length;
               return (
                 <li key={index}>
                   <a
+                    type="button"
                     className={`d-flex flex-wrap justify-content-between ${
                       selectedFormulation === formulation ? "active" : ""
                     }`}

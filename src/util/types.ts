@@ -34,16 +34,16 @@ export interface NavData {
 }
 
 export enum ProductTypes {
-  FERTILIZANTES = 'fertilizante',
-  FERTILIZANTES_GRANULADOS = 'Fertilizantes granulado',
-  FERTILIZANTES_SOLUBLES = 'Fertilizantes soluble',
-  FERTILIZANTES_LIQUIDOS = 'Fertilizantes Liquido',
+  FERTILIZANTES = 'fertilizantes',
+  FERTILIZANTES_GRANULADOS = 'Fertilizantes granulados',
+  FERTILIZANTES_SOLUBLES = 'Fertilizantes solubles',
+  FERTILIZANTES_LIQUIDOS = 'Fertilizantes liquidos',
   FERTILIZANTES_LIQUIDOS_HERBICIDAS = 'fertiliantes_liquidos_herbicida',
-  HERBICIDAS = 'herbicida',
-  INSECTICIDAS_GENERAL = 'insecticida',
-  FUNGICIDAS = 'fungicida',
-  SEMILLA = 'semilla',
-  HERMICIDAS = 'hermicida',
+  HERBICIDAS = 'herbicidas',
+  INSECTICIDAS_GENERAL = 'insecticidas',
+  FUNGICIDAS = 'fungicidas',
+  SEMILLA = 'semillas',
+  HERMICIDAS = 'hermicidas',
 }
 
 export interface FacebookPost {

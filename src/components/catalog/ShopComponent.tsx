@@ -1,21 +1,22 @@
 import React, { FC, useEffect, useState } from 'react';
 import { CardCartComponent } from './CardCartComponent';
-import type { ProductData } from 'src/util/types';
+import type { ProductData, ProductTypes } from 'src/util/types';
 import { db } from 'src/util/catalogData';
 import { SearcherComponent } from './SearcherComponent';
 import { ShopNavComponentNew } from './ShopNavComponentNew';
 import ReactPaginate from "react-paginate";
 interface ShopComponentProps {
-  filter: string | undefined;
+  filter: ProductTypes | undefined;
 }
 
-export const ShopComponent = ({ filter }: any) => {
+export const ShopComponent:FC<ShopComponentProps> = ({ filter }) => {
+  const [ filters, setFilters ] = useState<ProductTypes | null>(null); 
   const [ProductData, setProductData] = useState<ProductData[]>(db);
   const [currentPage, setCurrentPage] = useState(0);
   const [dataPaginate, setDataPaginate ] = useState<ProductData[]>();
   const postsPerPage = 6; // Número de publicaciones por página
 
-  const handleFilterNav = (productType: string, isName: boolean) => {
+  const handleFilterNav = (productType: ProductTypes, isName: boolean) => {
     setCurrentPage(0);
     let newData: ProductData[];
     if (isName) {
@@ -34,11 +35,23 @@ export const ShopComponent = ({ filter }: any) => {
     setCurrentPage(selectedPage);
   };
 
+  const handleSetFilter = (filter: ProductTypes) => {
+    setFilters(filter);
+  }
+
   useEffect(() => {
     if (filter) {
-      handleFilterNav(filter, false);
-    }
+      setFilters(filter);
+    } 
   }, [filter])
+
+  useEffect(() => {
+    if (filters) {
+      handleFilterNav(filters, false)
+    } else {
+      handleUpdateFilterData(db);
+    }
+  }, [filters]);
 
   useEffect(() => {
     const startIndex = currentPage * postsPerPage;
@@ -54,7 +67,7 @@ export const ShopComponent = ({ filter }: any) => {
             <div className="col-lg-3 col-md-7 col-12">
               <aside>
                 <SearcherComponent setProductData={setProductData} allData={db} />
-                <ShopNavComponentNew handleFilterNav={handleFilterNav} updateFilteredData={handleUpdateFilterData} filter={filter} />
+                <ShopNavComponentNew handleSetFilter={handleSetFilter} updateFilteredData={handleUpdateFilterData} filters={filters} productsLength={ProductData.length} />
               </aside>
             </div>
             <div className="col-lg-9 col-12">

@@ -118,6 +118,13 @@ export const ShopNavComponentNew = ({
     );
   };
 
+  useEffect(() => {
+    if (filters) {
+      filterCategoryByFormulacion(filters);
+      setSelectedTags([filters])
+    }
+  }, [filters]);
+
   return (
     <>
       <div className="widget widget-category">
